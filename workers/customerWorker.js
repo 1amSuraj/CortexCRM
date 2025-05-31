@@ -63,7 +63,7 @@ redisClient.on("error", (err) => {
 
 async function init() {
   await redisClient.connect();
-  console.log("🚀 Redis connected (Stream Consumer)");
+  console.log("Redis connected (Stream Consumer)");
 
   // Try to create consumer group (if not exists)
   try {
@@ -73,9 +73,9 @@ async function init() {
     console.log("✅ Consumer group created");
   } catch (err) {
     if (!err.message.includes("BUSYGROUP")) {
-      console.error("❌ Error creating consumer group:", err.message);
+      console.error("Error creating consumer group:", err.message);
     } else {
-      console.log("ℹ️ Consumer group already exists");
+      console.log("Consumer group already exists");
     }
   }
 
@@ -107,15 +107,15 @@ async function init() {
 
               // Acknowledge the message
               await redisClient.xAck(STREAM_KEY, CONSUMER_GROUP, id);
-              console.log("✅ Data saved & acknowledged");
+              console.log("Data saved & acknowledged");
             } catch (err) {
-              console.error("❌ MongoDB insert error:", err.message);
+              console.error("MongoDB insert error:", err.message);
             }
           }
         }
       }
     } catch (err) {
-      console.error("❌ Redis read error:", err.message);
+      console.error("Redis read error:", err.message);
     }
   }
 }
