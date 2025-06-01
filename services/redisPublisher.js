@@ -20,7 +20,7 @@ async function publishCustomerToStream(customerData) {
       data: JSON.stringify(customerData),
     }
   );
-  console.log("✅ Pushed to customer_ingest");
+  console.log("Pushed to customer_ingest");
 }
 
 module.exports = {
