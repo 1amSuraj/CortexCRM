@@ -4,8 +4,9 @@ const {
   createSegment,
   getUsersBySegment,
 } = require("../controllers/segmentController");
+const authenticateJWT = require("../middleware/auth");
 
-router.post("/create", createSegment);
-router.get("/:id/users", getUsersBySegment);
+router.post("/create", authenticateJWT, createSegment);
+router.get("/:id/users", authenticateJWT, getUsersBySegment);
 
 module.exports = router;
